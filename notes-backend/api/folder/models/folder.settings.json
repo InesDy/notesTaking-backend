@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "folders",
+  "info": {
+    "name": "Folder"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "notes": {
+      "collection": "note",
+      "via": "folder"
+    }
+  }
+}

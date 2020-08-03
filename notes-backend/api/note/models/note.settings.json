@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "notes",
+  "info": {
+    "name": "Note"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "text": {
+      "type": "richtext"
+    },
+    "folder": {
+      "via": "notes",
+      "model": "folder"
+    }
+  }
+}
