@@ -91,10 +91,25 @@ module.exports = {
   async delete(ctx) {
     const { id } = ctx.params;
 
-    const entity = await strapi.services.note.delete({
+    let note = await strapi.services.note.findOne({
       id,
       "user.id": ctx.state.user.id,
     });
-    return sanitizeEntity(entity, { model: strapi.models.note });
+
+    const trashFolder = await strapi.services.folder.findOne({
+      name: 'Trash',
+      "user.id": ctx.state.user.id,
+    });
+
+    if (trashFolder.id === note.folder.id) {
+      note = await strapi.services.note.delete({
+        id,
+        "user.id": ctx.state.user.id,
+      });
+    } else {
+      note = await strapi.services.note.update({ id }, { folder: trashFolder.id });
+    }
+
+    return sanitizeEntity(note, { model: strapi.models.note });
   },
 };
