@@ -13,8 +13,13 @@
       "type": "richtext"
     },
     "folder": {
-      "via": "notes",
-      "model": "folder"
+      "model": "folder",
+      "via": "notes"
+    },
+    "user": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "notes"
     }
   }
 }

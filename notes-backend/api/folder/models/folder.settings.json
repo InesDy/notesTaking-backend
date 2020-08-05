@@ -13,8 +13,13 @@
       "type": "string"
     },
     "notes": {
-      "collection": "note",
-      "via": "folder"
+      "via": "folder",
+      "collection": "note"
+    },
+    "user": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "folders"
     }
   }
 }
