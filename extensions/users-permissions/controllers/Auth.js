@@ -200,6 +200,19 @@ module.exports = {
       const sanitizedUser = sanitizeEntity(user.toJSON ? user.toJSON() : user, {
         model: strapi.query('user', 'users-permissions').model,
       });
+
+      const { id: userId } = sanitizedUser;
+
+      await strapi.services.folder.create({
+        name: 'General',
+        user: userId,
+      });
+
+      await strapi.services.folder.create({
+        name: 'Trash',
+        user: userId,
+      });
+
       if (settings.email_confirmation) {
         ctx.send({
           user: sanitizedUser,
